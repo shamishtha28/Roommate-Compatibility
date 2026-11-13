@@ -1,0 +1,261 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f5f1ff;
+    color: #30264a;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #7652c8, #a58bea);
+    color: white;
+    text-align: center;
+    padding: 45px 20px;
+    border-radius: 0 0 30px 30px;
+}
+
+header h1 {
+    font-size: 42px;
+    letter-spacing: 1px;
+}
+
+header p {
+    font-size: 17px;
+    margin-top: 5px;
+    opacity: 0.95;
+}
+
+/* Main content */
+main {
+    width: 90%;
+    max-width: 1050px;
+    margin: 35px auto;
+}
+
+.welcome {
+    text-align: center;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.welcome h2 {
+    color: #6843b4;
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+/* Student preference cards */
+.form-section {
+    background: white;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 22px rgba(91, 63, 145, 0.09);
+    border: 1px solid #eee7ff;
+}
+
+.form-section h2 {
+    color: #7049bd;
+    margin-bottom: 22px;
+    font-size: 23px;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 20px;
+}
+
+label {
+    font-weight: 600;
+    color: #51436e;
+    align-self: end;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ded4f5;
+    border-radius: 9px;
+    background: #fcfaff;
+    color: #30264a;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: #8965d3;
+    box-shadow: 0 0 0 3px rgba(137, 101, 211, 0.12);
+}
+
+/* Button */
+button {
+    display: block;
+    margin: 25px auto 0;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #7652c8, #9874dc);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(118, 82, 200, 0.25);
+}
+
+/* Results */
+#results {
+    background: white;
+    margin-top: 28px;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 22px rgba(91, 63, 145, 0.09);
+    overflow-wrap: anywhere;
+}
+
+#results:empty {
+    display: none;
+}
+
+#results h2,
+#results h3 {
+    color: #7049bd;
+    margin: 16px 0 10px;
+}
+
+#results p {
+    margin: 8px 0;
+}
+
+/* Footer */
+footer {
+    background: #30264a;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 45px;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 34px;
+    }
+
+    main {
+        width: 93%;
+    }
+
+    .form-section {
+        padding: 20px;
+    }
+
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+/* Category progress bars */
+.category-results {
+    margin-top: 25px;
+}
+
+.category-item {
+    margin: 20px 0;
+}
+
+.category-heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: #51436e;
+}
+
+.category-heading strong {
+    color: #7652c8;
+}
+
+.progress-track {
+    width: 100%;
+    height: 11px;
+    background: #eee8fa;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7652c8, #b19bea);
+    border-radius: 20px;
+}
+
+/* Circular compatibility score */
+.score-card {
+    text-align: center;
+    padding: 25px 15px;
+    margin: 20px 0;
+    background: #f8f5ff;
+    border-radius: 18px;
+}
+
+.score-circle {
+    width: 175px;
+    height: 175px;
+    margin: 20px auto;
+    border-radius: 50%;
+    background: conic-gradient(
+        #805bc9 calc(var(--score) * 1),
+        #e8def8 0
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-inner {
+    width: 140px;
+    height: 140px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-inner strong {
+    font-size: 35px;
+    color: #7049bd;
+}
+
+.score-inner span {
+    font-size: 13px;
+    color: #817493;
+}
+
+.match-status {
+    display: inline-block;
+    background: #e9e0fa;
+    color: #6843b4;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+}

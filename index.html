@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoomSync - Roommate Compatibility</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>RoomSync</h1>
+        <p>Find your compatible roommate!</p>
+    </header>
+
+    <main>
+
+        <section class="welcome">
+            <h2>Welcome to RoomSync</h2>
+            <p>Discover compatibility and understand
+               your roommate preferences.</p>
+        </section>
+
+        <!-- Student 1 -->
+        <section class="form-section">
+            <h2>Student 1 Preferences</h2>
+
+            <form id="student1Form">
+                <label>Student Name</label>
+                <input type="text" placeholder="Enter first student's name">
+
+                <label>Sleep Schedule</label>
+                <select>
+                    <option value="1">Early</option>
+                    <option value="2">Normal</option>
+                    <option value="3">Late</option>
+                </select>
+
+                <label>Study Habit</label>
+                <select>
+                    <option value="1">Silence</option>
+                    <option value="2">Music</option>
+                </select>
+
+                <label>Cleanliness</label>
+                <select>
+                    <option value="1">Relaxed</option>
+                    <option value="2">Moderate</option>
+                    <option value="3">Very Clean</option>
+                </select>
+
+                <label>Noise Tolerance</label>
+                <select>
+                    <option value="1">Low</option>
+                    <option value="2">Medium</option>
+                    <option value="3">High</option>
+                </select>
+
+                <label>Visitor Frequency</label>
+                <select>
+                    <option value="1">Rarely</option>
+                    <option value="2">Sometimes</option>
+                    <option value="3">Often</option>
+                </select>
+                       </form>
+        </section>
+
+        <!-- Student 2 -->
+        <section class="form-section">
+            <h2>Student 2 Preferences</h2>
+
+            <form id="student2Form">
+                <label>Student Name</label>
+                <input type="text" placeholder="Enter second student's name">
+
+                <label>Sleep Schedule</label>
+                <select>
+                    <option value="1">Early</option>
+                    <option value="2">Normal</option>
+                    <option value="3">Late</option>
+                </select>
+
+                <label>Study Habit</label>
+                <select>
+                    <option value="1">Silence</option>
+                    <option value="2">Music</option>
+                </select>
+
+                <label>Cleanliness</label>
+                <select>
+                    <option value="1">Relaxed</option>
+                    <option value="2">Moderate</option>
+                    <option value="3">Very Clean</option>
+                </select>
+
+                <label>Noise Tolerance</label>
+                <select>
+                    <option value="1">Low</option>
+                    <option value="2">Medium</option>
+                    <option value="3">High</option>
+                </select>
+
+                <label>Visitor Frequency</label>
+                <select>
+                    <option value="1">Rarely</option>
+                    <option value="2">Sometimes</option>
+                    <option value="3">Often</option>
+                </select>
+                       </form>
+
+            <button type="button" id="calculateBtn">Check Compatibility</button>
+<div id="results"></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>RoomSync | Intelligent Roommate Compatibility System</p>
+    </footer>
+
+<script>
+const button = document.getElementById("calculateBtn");
+
+button.addEventListener("click", async function() {
+
+    const form1 = document.getElementById("student1Form");
+    const form2 = document.getElementById("student2Form");
+
+    const name1 = form1.querySelector("input").value.trim();
+    const name2 = form2.querySelector("input").value.trim();
+
+    if (name1 === "" || name2 === "") {
+        alert("Please enter both student names!");
+        return;
+    }
+
+    const p1 = Array.from(form1.querySelectorAll("select"))
+        .map(select => Number(select.value));
+
+    const p2 = Array.from(form2.querySelectorAll("select"))
+        .map(select => Number(select.value));
+
+    const data = new URLSearchParams();
+
+    data.append("name1", name1);
+    data.append("name2", name2);
+
+    p1.forEach((value, i) => data.append("p1_" + i, value));
+    p2.forEach((value, i) => data.append("p2_" + i, value));
+
+    const results = document.getElementById("results");
+    results.innerHTML = "<p>Calculating compatibility...</p>";
+
+    try {
+        const response = await fetch("http://127.0.0.1:8080", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: data.toString()
+        });
+
+        if (!response.ok) {
+            throw new Error("Server returned an error.");
+        }
+
+        const result = await response.json();
+
+        results.innerHTML = result.html;
+
+    } catch (error) {
+        results.innerHTML =
+            "<p>Could not connect to RoomSync server. " +
+            "Please make sure the C++ server is running.</p>";
+
+        console.error(error);
+    }
+});
+</script>
+
+</body>
+</html>
+
+
+
