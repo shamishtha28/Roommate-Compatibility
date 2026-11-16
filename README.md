@@ -1,4 +1,4 @@
-# RoomSync – Intelligent Roommate Compatibility & Conflict Prediction System
+# RoomSync – Roommate Compatibility & Conflict Prediction System
 
 ## Project Overview
 RoomSync is an OOP-based project designed to evaluate lifestyle compatibility between two students who may share a room. It compares their preferences and calculates a compatibility score.
